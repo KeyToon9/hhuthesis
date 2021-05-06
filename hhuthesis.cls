@@ -18,6 +18,7 @@
 %% and version 1.3c or later is part of all distributions of LaTeX version
 %% 2008/05/04 or later.
 %%
+%% Bachelor Version By Keytoon
 
 \NeedsTeXFormat{LaTeX2e}[2008/05/04]
 \ProvidesClass{hhuthesis}[2021/04/07 v2.0.0 hhuthesis document class]
@@ -55,26 +56,27 @@
 \newcommand{\version}{\hhut@value@templateversion}
 
 %% 国家图书馆封面标题
-\def\hhut@label@nlc{国家图书馆封面}
+\def\hhut@label@nlc{封面}
 \def\hhut@label@studentnumber{学号：}
 \def\hhut@label@classification{分类号：}
 \def\hhut@label@securitylevel{密级：}
+\def\hhut@label@studentgrade{年级：}
 \def\hhut@label@udc{U~D~C：}
 \def\hhut@label@thesistitle@doctor{博士学位论文}
 \def\hhut@label@thesistitle@academic{硕士学位论文}
 \def\hhut@label@thesistitle@professional{全日制工程硕士专业学位论文}
 \def\hhut@label@thesistitle@nonfulltime{非全日制工程硕士专业学位论文}
-\def\hhut@label@thesistitle@bachelor{学士学位论文}
-\def\hhut@label@tutor{指导教师姓名：}
+\def\hhut@label@thesistitle@bachelor{本科毕业论文}
+\def\hhut@label@tutor{指导教师}
 \def\hhut@label@professional@tutora{学校指导教师：}
 \def\hhut@label@professional@tutorb{基地指导教师：}
 \def\hhut@label@degree{申请学位级别：}
-\def\hhut@label@major{专业名称：}
+\def\hhut@label@major{专业}
 \def\hhut@label@submitdate{论文提交日期：}
 \def\hhut@label@defenddate{论文答辩日期：}
 \def\hhut@label@awarded{学位授予单位和日期：}
 \def\hhut@label@chairman{答辩委员会主席：}
-\def\hhut@label@reviewer{答辩委员会成员：}
+\def\hhut@label@reviewer{评阅人}
 \def\hhut@label@comma{、}
 
 %% 论文书脊封面标题
@@ -85,7 +87,8 @@
 \def\hhut@label@cover@classification{分类号(中图法)}
 \def\hhut@label@cover@udc{UDC(DDC)}
 \def\hhut@label@cover@securitylevel{密级}
-\def\hhut@label@cover@author{论文作者姓名}
+\def\hhut@label@cover@studentgrade{年级}
+\def\hhut@label@cover@author{姓名}
 \def\hhut@label@cover@studentnumber{学号}
 \def\hhut@label@cover@institute{单位}
 \def\hhut@label@cover@zhtitle{论文中文题名}
@@ -110,6 +113,7 @@
 
 %% 论文英文信息封面标题
 \def\hhut@label@encover{英文信息封面}
+\def\hhut@label@encovertile{BACHELOR'S DEGREE THESIS\\OF HOHAI UNIVERSITY}
 \def\hhut@label@enstatement{
     Dissertation Submitted to\\
 	{\rmfamily \zihao{4} \textbf{\hhut@value@eninstitute}}\\
@@ -123,15 +127,17 @@
 %% 原创性声明内容
 \def\hhut@label@declareoriginal{原创性声明}
 \def\hhut@label@original{学位论文独创性声明：}
+\def\hhut@label@zhengzhongshengming{郑重声明}
 \def\hhut@label@originalcontent{
-本人所呈交的学位论文是我个人在导师指导下进行的研究工作及取
-得的研究成果。尽我所知，除了文中特别加以标注和致谢的地方外，论文
-中不包含其他人已经发表或撰写过的研究成果。与我一同工作的同事对
-本研究所做的任何贡献均已在论文中作了明确的说明并表示了谢意。如
-不实，本人负全部责任。
+本人呈交的毕业论文，是在导师的指导下，
+独立进行研究工作所取得的成果，所有数据、图片资料真实可靠。
+尽我所知，除文中已经注明引用的内容外，本设计（论文）的研究成果不包含他人享有著作权的内容。
+对本设计（论文）所涉及的研究工作做出贡献的其他个人和集体，均已在文中以明确的方式标明。
+本设计（论文）的知识产权归属于培养单位。
 }
-\def\hhut@label@authorsign{论文作者(签名)：}
-\def\hhut@label@originaldate{年\hspace{3em}月\hspace{3em}日}
+\def\hhut@label@authorsign{本人签名：}
+%%\def\hhut@label@originaldate{年\hspace{3em}月\hspace{3em}日}
+\def\hhut@label@originaldate{日期：}
 \def\hhut@label@authorization{学位论文使用授权说明：}
 \def\hhut@label@authorizationcontent{
 河海大学、中国科学技术信息研究所、国家图书馆、中国学术期刊
@@ -143,6 +149,9 @@
 }
 
 %% 加载宏包
+
+\usepackage{ragged2e}
+\renewcommand{\justify}{\leftskip=0pt \rightskip=0pt plus 0cm}
 
 %% 数学公式&符号
 \RequirePackage{amsmath,amsthm,amsfonts,amssymb,bm,mathrsfs}
@@ -313,8 +322,8 @@ footskip=0.7cm % 页脚1.8cm %
 
 %% 设定目录格式，目录颜色更换为黑色，并将目录、插图索引、附表索引加入目录中。
 \addtocontents{toc}{\protect\hypersetup{hidelinks}}
-\addtocontents{lot}{\protect\hypersetup{hidelinks}}
-\addtocontents{lof}{\protect\hypersetup{hidelinks}}
+%\addtocontents{lot}{\protect\hypersetup{hidelinks}}
+%\addtocontents{lof}{\protect\hypersetup{hidelinks}}
 
 %% 设置目录格式
 \titlecontents{chapter}[0pt]{\heiti \zihao{-4}}
@@ -353,7 +362,7 @@ footskip=0.7cm % 页脚1.8cm %
 	\fancyfoot[C]{\songti \zihao{-5} \thepage}
 	%% 设置页眉格式
     \fancyhead[CO]{ \ifhhut@doctor \zihao{-5} {\songti 河海大学博士学位论文}
-                        \else \ifhhut@bachelor \zihao{-5} {\songti 河海大学学士学位论文}
+                        \else \ifhhut@bachelor \zihao{-5} {\songti 河海大学本科毕业论文}
                             \else \zihao{-5} {\songti 河海大学硕士学位论文}\fi\fi}
     \fancyhead[CE]{ \songti \zihao{-5} \leftmark}
 }
@@ -407,16 +416,16 @@ footskip=0.7cm % 页脚1.8cm %
 \captionsetup[table][bi-second]{name=Table}
 \captionsetup[figure][bi-second]{name=Fig.}
 \captionsetup[table]{
-    labelfont = bf,
-    textfont = bf,
+    labelfont = sf,
+    textfont = sf,
     position = top,
 	aboveskip = {6bp},
 	belowskip = {6bp},
 }
 \numberwithin{table}{section}
 \captionsetup[figure]{
-    labelfont = bf,
-    textfont = bf,
+    labelfont = sf,
+    textfont = sf,
     position = bottom,
 	aboveskip = {6bp},
 	belowskip = {6bp},
@@ -478,7 +487,7 @@ footskip=0.7cm % 页脚1.8cm %
 
 %% listings 源代码显示
 \lstset{tabsize=4,     %
-	frame=shadowbox,    % 把代码用带有阴影的框圈起来
+	frame=single,    % framebox 把代码用带有阴影的框圈起来
 	commentstyle=\color{red!50!green!50!blue!50},%浅灰色的注释
 	rulesepcolor=\color{red!20!green!20!blue!20},%代码块边框为淡青色
 	keywordstyle=\color{blue!90}\bfseries, %代码关键字的颜色为蓝色，粗体
@@ -517,6 +526,7 @@ footskip=0.7cm % 页脚1.8cm %
 \newcommand\studentnumber[1]{\def\hhut@value@studentnumber{#1}}
 \newcommand\classification[1]{\def\hhut@value@classification{#1}}
 \newcommand\securitylevel[1]{\def\hhut@value@securitylevel{#1}}
+\newcommand\studentgrade[1]{\def\hhut@value@studentgrade{#1}}
 \newcommand\udc[1]{\def\hhut@value@udc{#1}}
 \renewcommand\title[2][\hhut@value@title]{%
     \def\hhut@value@title{#2}
@@ -563,85 +573,92 @@ footskip=0.7cm % 页脚1.8cm %
     \cleardoublepage
     \thispagestyle{empty}
     \pdfbookmark[0]{\hhut@label@nlc}{nlc}
-    {\songti \zihao{4}   
+    {\heiti \zihao{5} 
+    \begin{flushright}
         \vskip 10pt
-        \makebox[40pt][r]{\hhut@label@classification}
-        \hhutunderline[150pt]{\hhut@value@classification}
+        %%\makebox[40pt][r]{\hhut@label@classification}
+        %%\hhutunderline[150pt]{\hhut@value@classification}
         \hfill
         \makebox[40pt][r]{\hhut@label@studentnumber}
         \hhutunderline[90pt]{\hhut@value@studentnumber}
         \vskip 10pt
-        \makebox[40pt][r]{\hhut@label@udc}
-        \hhutunderline[150pt]{\hhut@value@udc}
+        %%\makebox[40pt][r]{\hhut@label@udc}
+        %%\hhutunderline[150pt]{\hhut@value@udc}
         \hfill
-        \makebox[40pt][r]{\hhut@label@securitylevel}
-        \hhutunderline[90pt]{\hhut@value@securitylevel}
+        %%\makebox[40pt][r]{\hhut@label@securitylevel}
+        %%\hhutunderline[90pt]{\hhut@value@securitylevel}
+        \makebox[40pt][r]{\hhut@label@studentgrade}
+        \hhutunderline[90pt]{\hhut@value@studentgrade}
+    \end{flushright} 
     }
     \vskip 40pt
     \begin{center}
         \includegraphics[height=25mm]{hhuname.png}\\
-        \vskip 10pt
-        \def\ULthickness{2pt}
-        {\ifhhut@doctor \songti \zihao{2} \hhut@label@thesistitle@doctor
-        \else \ifhhut@academicmaster \songti \zihao{2} \hhut@label@thesistitle@academic
-            \else \ifhhut@professionalmaster \songti \zihao{2} \hhut@label@thesistitle@professional
-                \else \ifhhut@nonfulltimemaster \songti \zihao{2} \hhut@label@thesistitle@nonfulltime
-                    \else \songti \zihao{2} \hhut@label@thesistitle@bachelor \fi\fi\fi\fi}% 学位论文
-        \begin{spacing}{2.5}
+        \vskip 50pt
+        \def\ULthickness{2pt} \bfseries
+        {\ifhhut@doctor \songti \zihao{1} \hhut@label@thesistitle@doctor
+        \else \ifhhut@academicmaster \songti \zihao{1} \hhut@label@thesistitle@academic
+            \else \ifhhut@professionalmaster \songti \zihao{1} \hhut@label@thesistitle@professional
+                \else \ifhhut@nonfulltimemaster \songti \zihao{1} \hhut@label@thesistitle@nonfulltime
+                    \else \songti \zihao{1} \hhut@label@thesistitle@bachelor \fi\fi\fi\fi}% 学位论文
+        \begin{spacing}{2.5}%% 标题
         {\heiti \zihao{1}
         \hhut@value@title
         }
         \end{spacing}
         \vskip 30pt
-        {\songti \zihao{4} \hhut@value@author}
-        \vskip 30pt
+        %%{\songti \zihao{4} \hhut@value@author}
+        %%\vskip 30pt
     \end{center}
-    \begin{spacing}{2.0}
-    {\songti \zihao{4}
-        \noindent
-        {\ifhhut@professionalmaster \hhut@label@professional@tutora
-            \else \ifhhut@nonfulltimemaster \hhut@label@professional@tutora
-                \else \hhut@label@tutor \fi\fi}%
-        \hhutunderline[355pt]{\hhut@value@tutorinfoa}\\
-        {\ifhhut@professionalmaster \hhut@label@professional@tutorb \hhutunderline[355pt]{\hhut@value@tutorinfob}
-            \else \ifhhut@nonfulltimemaster \hhut@label@professional@tutorb \hhutunderline[355pt]{\hhut@value@tutorinfob}
-                \else \rightline{\hhutunderline[355pt]{\hhut@value@tutorinfob}}\fi\fi}\\
-        \noindent\hhut@label@degree%
-        \hhutunderline[120pt]{\hhut@value@degree}%
-        \hfill
-        \hhut@label@major%
-        \hhutunderline[150pt]{\hhut@value@major}\\%
-        \noindent\hhut@label@submitdate%
-        \hhutunderline[120pt]{\hhut@value@submitdate}
-        \hfill
-        \hhut@label@defenddate%
-        \hhutunderline[120pt]{\hhut@value@defenddate}\\
-        \noindent\hhut@label@awarded%
-        \hhutunderline[313pt]{\hhut@value@awarded}\\
-        {\ifhhut@doctor \noindent\hhut@label@chairman%
-        \hhutunderline[54pt]{\hhut@value@chairman}
-        \hhut@label@reviewer%
-        \hhutunderline[54pt]{\hhut@value@reviewera}\hhut@label@comma
-        \hhutunderline[54pt]{\hhut@value@reviewerb}\hhut@label@comma
-        \hhutunderline[54pt]{\hhut@value@reviewerc}\hhut@label@comma\\
-        \noindent\hhutunderline[54pt]{\hhut@value@reviewerd}\hhut@label@comma
-        \hhutunderline[54pt]{\hhut@value@reviewere}\hhut@label@comma
-        \hhutunderline[54pt]{\hhut@value@reviewerf}\hhut@label@comma
-        \hhutunderline[54pt]{\hhut@value@reviewerg}
-            \else \noindent\hhut@label@chairman%
-            \hhutunderline[54pt]{\hhut@value@chairman}
-            \hhut@label@reviewer%
-            \hhutunderline[54pt]{\hhut@value@reviewera}\hhut@label@comma
-            \hhutunderline[545pt]{\hhut@value@reviewerb}\hhut@label@comma
-            \hhutunderline[54pt]{\hhut@value@reviewerc}\hhut@label@comma\\
-            \noindent\hhutunderline[54pt]{\hhut@value@reviewerd}\hhut@label@comma
-            \hhutunderline[54pt]{\hhut@value@reviewere} \fi}%
+    \begin{center}
+    % \begin{spacing}{2.0}
+    % {\heiti \zihao{3}
+    %     \noindent
+    %     %% 专业
+    %     \makebox[4em][s]{\bfseries{\hhut@label@major}}%
+    %     \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@major}}\\%
+    %     %% 论文提交时间
+    %     %%\noindent\hhut@label@submitdate%
+    %     %%\hhutunderline[120pt]{\hhut@value@submitdate}
+    %     %% 姓名
+    %     \makebox[4em][s]{\bfseries{\hhut@label@cover@author}}%
+    %     \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@author}}\\%
+    %     %% 指导老师
+    %     \makebox[4em][s]{\bfseries{\ifhhut@professionalmaster \hhut@label@professional@tutora
+    %         \else \ifhhut@nonfulltimemaster \hhut@label@professional@tutora
+    %             \else \hhut@label@tutor \fi\fi}}%
+    %     \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@tutorinfoa}}\\%
+    %     %% 评阅人
+    %     \makebox[4em][s]{\bfseries{\justify{\hhut@label@reviewer}}}
+    %     \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@reviewera}}\\
+    % }
+    % \end{spacing}
+    {\heiti \zihao{3}
+        \begin{tabular}{cc}
+            %% 专业
+            \makebox[4em][s]{\bfseries{\hhut@label@major}} &
+            \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@major}}\\
+            %% 姓名
+            \makebox[4em][s]{\bfseries{\hhut@label@cover@author}} & 
+            \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@author}}\\
+            %% 指导老师
+            \makebox[4em][s]{\bfseries{\ifhhut@professionalmaster \hhut@label@professional@tutora
+             \else \ifhhut@nonfulltimemaster \hhut@label@professional@tutora
+                 \else \hhut@label@tutor \fi\fi}} &
+            \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@tutorinfoa}}\\
+            %% 评阅人
+            \makebox[4em][s]{\bfseries{\justify{\hhut@label@reviewer}}} &
+            \hhutunderline[150pt]{{\songti \zihao{-3} \hhut@value@reviewera}}\\
+        \end{tabular}
     }
+    \begin{spacing}{2.0}
+        { }
     \end{spacing}
+    \end{center}
     \begin{center}
         %\vskip 20pt
-        {\songti \zihao{4}
-        \hhut@value@nlcdate \hspace{24pt} \hhut@value@nlclocate}
+        {\heiti \zihao{3}
+        \hhut@value@nlcdate \\ \hhut@value@nlclocate}
     \end{center}
     \clearpage
     \if@twoside
@@ -772,19 +789,28 @@ footskip=0.7cm % 页脚1.8cm %
     \begin{center}
         \vskip 20pt
         \begin{spacing}{2.0}
+            {\zihao{2} \textbf{\hhut@label@encovertile}}
+        \vskip 60pt
             {\zihao{2} \textbf{\hhut@value@englishtitle}}
         \vskip 60pt
-        {\rmfamily\zihao{4}\hhut@label@enstatement}
+        {\zihao{4}
+            \noindent
+            %% College
+            \makebox[5em][l]{College} : %
+            \hhutunderline[220pt]{{\zihao{4} \hhut@value@englishdepartment}}\\%
+            %% Subject
+            \makebox[5em][l]{Subject} : %
+            \hhutunderline[220pt]{{\zihao{4} }}\\%
+            %% Name
+            \makebox[5em][l]{Name} : %
+            \hhutunderline[220pt]{{\zihao{4} \hhut@value@englishauthor}}\\%
+            %% Directed by
+            \makebox[5em][l]{Directed by} :
+            \hhutunderline[220pt]{{\zihao{4} \hhut@value@entutor}}
+        }
         \vskip 60pt
-        {\normalfont\rmfamily\zihao{4}\hhut@label@enby}\\
-        {\rmfamily \zihao{4} \textbf{\hhut@value@englishauthor}}\\
-        {\rmfamily \zihao{4} \textbf{(\hhut@value@englishdepartment)}}
-        \vskip 60pt
-        {\normalfont\rmfamily\zihao{4}\hhut@label@entutor
-        \rmfamily \zihao{4} \textbf{\hhut@value@entutor}}
-        \vskip 60pt
-        {\rmfamily \zihao{4} \textbf{\hhut@value@enlocate}}\\
-        {\noindent \rmfamily \zihao{4} \textbf{\hhut@value@englishdate}}        
+        {\rmfamily \zihao{-2} \hhut@value@enlocate}\\
+        {\noindent \rmfamily \zihao{-2} \hhut@value@englishdate} 
         \end{spacing}
     \end{center}
     \normalfont
@@ -801,25 +827,23 @@ footskip=0.7cm % 页脚1.8cm %
     \pdfbookmark[0]{\hhut@label@declareoriginal}{declareoriginal}
     \thispagestyle{empty}
     \vskip 40pt
+    \begin{center}
+        %% 郑重声明
+        \songti \zihao{2} \bfseries
+        \hhut@label@zhengzhongshengming \par
+    \end{center}
+    \vskip 10pt
     \begin{spacing}{2.0}
-        { \zihao{4} \rmfamily \bfseries
-        \hhut@label@original \par
-        \vskip 10pt
+        { \zihao{4} \rmfamily
         \hhut@label@originalcontent \par
         \vskip 50pt
-        \hhut@label@authorsign%
-        \hhutunderline[120pt]{} %
-        \hfill
-        \hhut@label@originaldate \par
-        \vskip 60pt
-        \hhut@label@authorization \par
-        \vskip 10pt
-        \hhut@label@authorizationcontent \par
-        \vskip 50pt
+        \noindent
         \hhut@label@authorsign%
         \hhutunderline[120pt]{} %
         \hfill
         \hhut@label@originaldate
+        \hhutunderline[120pt]{} \par %
+        \vskip 60pt
     }
     \end{spacing}
     \clearpage

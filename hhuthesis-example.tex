@@ -21,7 +21,7 @@
 
 %% 默认博士论文模板 doctor
 
-\documentclass[doctor]{hhuthesis}
+\documentclass[bachelor]{hhuthesis}
 
 %% 模板选项：本科毕业论文bachelor；学术型硕士论文academicmaster；专业学位硕士论文professionalmaster；非全日制专业学位论文nonfulltimemaster；博士论文doctor
 
@@ -38,6 +38,7 @@
 \studentnumber{1209800072}
 \classification{TV14}
 \securitylevel{无}
+\studentgrade{2017级}
 \udc{627}
 \title{河网地区水力水质特性的\\组合单元解法及反问题的研究}
 \vtitle{河网地区水力水质特性的组合单元解法及反问题的研究}
@@ -45,7 +46,7 @@
 
 % 专业型硕士\tutorinfoa填写学校指导老师信息，\tutorinfob填写基地指导老师信息
 % 其余用户\tutorinfoa填写指导老师姓名&职称，\tutorinfob填写指导老师单位&地址
-\tutorinfoa{张长江\hspace{3em}教授\hspace{3em}博导}
+\tutorinfoa{张长江}
 \tutorinfob{河海大学水利水电学院}
 
 \degree{工学博士}
@@ -100,10 +101,10 @@
 \makenlctitle
 
 %% 制作书脊
-\makeverticaltitle
+%\makeverticaltitle
 
 %% 制作中文信息封面
-\makeinfo
+%\makeinfo
 
 %% 制作英文信息封面
 \makeeninfo
@@ -117,13 +118,13 @@
 \frontmatter
 
 %% 前言，硕士论文不需要可删除
-\input{chapters/preface}
+% \input{chapters/preface}
 
 %% 摘要
 \input{chapters/abstract}
 
 %% 符号对照表，可选，如不用可注释掉
-\input{chapters/denotation}
+% \input{chapters/denotation}
 
 %% 加入目录
 \tableofcontents
@@ -131,8 +132,8 @@
 %% 加入图、表索引(同时取消图表索引中章之间的垂直间隔，不需要可以注释)
 \let\origaddvspace\addvspace
 \renewcommand{\addvspace}[1]{}
-\listoffigures
-\listoftables
+%\listoffigures
+%\listoftables
 \renewcommand{\addvspace}[1]{\origaddvspace{#1}}
 
 %%
@@ -151,7 +152,7 @@
 %% 参考文献样式设定
 \bibliographystyle{hhuthesis-numeric}		% 顺序编码式
 %% 参考文献，10号字，使用 BibTeX，包含参考文献文件.bib
-\bibliography{reference/chap1,reference/chap2} %
+\bibliography{reference/chap1} %
 %\bibliography{reference/chap1}
 
 %%
@@ -165,6 +166,6 @@
 \input{chapters/acknowledgement}
 
 %% 附录
-\input{chapters/resume}
+% \input{chapters/resume}
 
 \end{document}
