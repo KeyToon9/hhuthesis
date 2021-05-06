@@ -6,6 +6,8 @@
 
 # hhuthesis
 
+## 使用本科模板请切换到Bachelor分支
+
 **Latest Version: `V2.0.0`**  
 
 Scroll down for the English version of README.
