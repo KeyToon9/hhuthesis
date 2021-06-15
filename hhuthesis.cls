@@ -18,7 +18,6 @@
 %% and version 1.3c or later is part of all distributions of LaTeX version
 %% 2008/05/04 or later.
 %%
-%% Bachelor Version By Keytoon
 
 \NeedsTeXFormat{LaTeX2e}[2008/05/04]
 \ProvidesClass{hhuthesis}[2021/04/07 v2.0.0 hhuthesis document class]
@@ -255,6 +254,10 @@ footskip=0.7cm % 页脚1.8cm %
 	\thispagestyle{empty}%
 	\hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 
+\usepackage{tikz}
+\newcommand*{\circled}[1]{\lower.7ex\hbox{\tikz\draw (0pt, 0pt)%
+    circle (.5em) node {\makebox[1em][c]{\small #1}};}}
+
 %% 设置行距为20磅
 \setstretch{1.38}
 %% 设置段落间距
@@ -481,7 +484,7 @@ footskip=0.7cm % 页脚1.8cm %
 }
 
 %% 设置无序列表的标签符号
-\setlist[itemize,1]{label=$\medbullet$}
+\setlist[itemize,1]{label=$\bullet$}
 \setlist[itemize,2]{label=$\balcksquare$}
 \setlist[itemize,3]{label=$\Diamondblack$}
 
@@ -777,6 +780,7 @@ footskip=0.7cm % 页脚1.8cm %
 \newcommand\entutor[1]{\def\hhut@value@entutor{#1}}
 \newcommand\eninstitute[1]{\def\hhut@value@eninstitute{#1}}
 \newcommand\englishdepartment[1]{\def\hhut@value@englishdepartment{#1}}
+\newcommand\englishsubject[1]{\def\hhut@value@englishsubject{#1}}
 \newcommand\englishdate[1]{\def\hhut@value@englishdate{#1}}
 \newcommand\enlocate[1]{\def\hhut@value@enlocate{#1}}
 \newcommand\englishdegree[1]{\def\hhut@value@englishdegree{#1}}
@@ -800,7 +804,7 @@ footskip=0.7cm % 页脚1.8cm %
             \hhutunderline[220pt]{{\zihao{4} \hhut@value@englishdepartment}}\\%
             %% Subject
             \makebox[5em][l]{Subject} : %
-            \hhutunderline[220pt]{{\zihao{4} }}\\%
+            \hhutunderline[220pt]{{\zihao{4} \hhut@value@englishsubject}}\\%
             %% Name
             \makebox[5em][l]{Name} : %
             \hhutunderline[220pt]{{\zihao{4} \hhut@value@englishauthor}}\\%
